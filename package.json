@@ -1,12 +1,17 @@
 {
   "name": "squarespace-components",
   "version": "1.0.0",
-  "description": "",
+  "description": "Set of squarespace components",
   "scripts": {
-    "build": "parcel build ./src/index.html --no-content-hash",
-    "dev": "parcel serve ./src/index.html --open"
+    "dev:modal": "parcel serve ./src/modal/index.html --open",
+    "build:modal": "parcel build ./src/modal/index.html --dist-dir dist/modal --no-content-hash",
+    "dev:tooltip": "parcel serve ./src/tooltip/index.html --open",
+    "build:tooltip": "parcel build ./src/tooltip/index.html --dist-dir dist/tooltip --no-content-hash"
   },
-  "keywords": [],
+  "keywords": [
+    "squarespace",
+    "components"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
