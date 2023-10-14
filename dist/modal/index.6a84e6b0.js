@@ -12,7 +12,7 @@ const t=`
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 999;
+  z-index: 9999;
   align-items: center;
   justify-content: center;
   transition: opacity 0.3s ease;
@@ -20,6 +20,7 @@ const t=`
 }
 
 .sqs-custom-modal {
+  z-index: 9999;
   display: none;
   z-index: 1;
   width: 600px;
@@ -35,6 +36,7 @@ const t=`
 .sqs-custom-modal-content {
   display: flex;
   width: 100%;
+  height: 100%;
 }
 
 .sqs-custom-modal-close {
@@ -61,7 +63,7 @@ const t=`
   text-decoration: none;
   cursor: pointer;
 }      
-</style>`,o=`
+</style>`,s=`
 <div class="sqs-custom-modal-overlay">
   <div class="sqs-custom-modal">
     <div class="sqs-custom-modal-content">
@@ -69,10 +71,10 @@ const t=`
       <slot></slot>
     </div>
   </div>
-</div>`;class s extends HTMLElement{OVERLAY_CLASS_SELECTOR=".sqs-custom-modal-overlay";MODAL_CLASS_SELECTOR=".sqs-custom-modal";CLOSE_CLASS_SELECTOR=".sqs-custom-modal-close";CONTENT_CLASS_SELECTOR=".sqs-custom-modal-content";constructor(){super(),this.attachShadow({mode:"open"}),this.shadowRoot.innerHTML=`
+</div>`;class o extends HTMLElement{OVERLAY_CLASS_SELECTOR=".sqs-custom-modal-overlay";MODAL_CLASS_SELECTOR=".sqs-custom-modal";CLOSE_CLASS_SELECTOR=".sqs-custom-modal-close";CONTENT_CLASS_SELECTOR=".sqs-custom-modal-content";constructor(){super(),this.attachShadow({mode:"open"}),this.shadowRoot.innerHTML=`
     ${t}
-    ${o}
-    `}getPropsValues(){let t=this.getAttribute("alignItems"),o=this.getAttribute("justifyContent"),s=this.getAttribute("flexDirection"),e=this.shadowRoot.querySelector(this.CONTENT_CLASS_SELECTOR);t&&(e.style.alignItems=t),o&&(e.style.justifyContent=o),s&&(e.style.flexDirection=s)}connectedCallback(){this.getPropsValues(),this.shadowRoot.querySelector(this.CLOSE_CLASS_SELECTOR).addEventListener("click",()=>{this.close()}),this.shadowRoot.querySelector(this.OVERLAY_CLASS_SELECTOR).addEventListener("click",t=>{t.target===t.currentTarget&&this.close()})}close(){let t=this.shadowRoot.querySelector(this.OVERLAY_CLASS_SELECTOR),o=this.shadowRoot.querySelector(this.MODAL_CLASS_SELECTOR);t.style.display="none",o.style.display="none",t.style.opacity=0,o.style.opacity=0}open(){let t=this.shadowRoot.querySelector(this.OVERLAY_CLASS_SELECTOR),o=this.shadowRoot.querySelector(this.MODAL_CLASS_SELECTOR);t.style.display="flex",o.style.display="block",setTimeout(()=>{t.style.opacity=1},200),setTimeout(()=>{o.style.opacity=1},500)}}customElements.define("sqs-custom-modal",s);/*
+    ${s}
+    `}getPropsValues(){let t=this.getAttribute("alignItems"),s=this.getAttribute("justifyContent"),o=this.getAttribute("flexDirection"),e=this.shadowRoot.querySelector(this.MODAL_CLASS_SELECTOR),i=this.shadowRoot.querySelector(this.CONTENT_CLASS_SELECTOR);t&&(i.style.alignItems=t,e.style.alignItems=t),s&&(i.style.justifyContent=s,e.style.alignItems=t),o&&(i.style.flexDirection=o,e.style.flexDirection=o)}connectedCallback(){this.getPropsValues(),this.shadowRoot.querySelector(this.CLOSE_CLASS_SELECTOR).addEventListener("click",()=>{this.close()}),this.shadowRoot.querySelector(this.OVERLAY_CLASS_SELECTOR).addEventListener("click",t=>{t.target===t.currentTarget&&this.close()})}close(){let t=this.shadowRoot.querySelector(this.OVERLAY_CLASS_SELECTOR),s=this.shadowRoot.querySelector(this.MODAL_CLASS_SELECTOR);t.style.display="none",s.style.display="none",t.style.opacity=0,s.style.opacity=0}open(){let t=this.shadowRoot.querySelector(this.OVERLAY_CLASS_SELECTOR),s=this.shadowRoot.querySelector(this.MODAL_CLASS_SELECTOR);t.style.display="flex",s.style.display="block",setTimeout(()=>{t.style.opacity=1},200),setTimeout(()=>{s.style.opacity=1},500)}}customElements.define("sqs-custom-modal",o);/*
 How to use it:
 
 <sqs-custom-modal id="modal1">
@@ -82,23 +84,21 @@ How to use it:
 <button onclick="document.getElementById('modal1').open()">
   Open Modal
 </button>
+*//*
+How to use props:
 
-
-or
-
-<sqs-custom-modal id="modal1">
+<sqs-custom-modal 
+  id="modal1" 
+  justifyContent="center" 
+  alignItems="center" 
+  direction="column"
+>
   <p>Some text in the Modal..</p>
 </sqs-custom-modal>
 
-<button onclick="openModal1">
+<button onclick="document.getElementById('modal1').open()">
   Open Modal
 </button>
-
-<script>
-  function openModal1() {
-    document.getElementById("modal1").open();
-  }
-</script>
 *///# sourceMappingURL=index.6a84e6b0.js.map
 
 //# sourceMappingURL=index.6a84e6b0.js.map

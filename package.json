@@ -5,8 +5,8 @@
   "scripts": {
     "dev:modal": "parcel serve ./src/modal/index.html --open",
     "build:modal": "parcel build ./src/modal/index.html --dist-dir dist/modal --no-content-hash",
-    "dev:tooltip": "parcel serve ./src/tooltip/index.html --open",
-    "build:tooltip": "parcel build ./src/tooltip/index.html --dist-dir dist/tooltip --no-content-hash"
+    "dev:list": "parcel serve ./src/list/index.html --open",
+    "build:list": "parcel build ./src/list/index.html --dist-dir dist/list --no-content-hash"
   },
   "keywords": [
     "squarespace",

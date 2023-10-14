@@ -12,7 +12,7 @@ const styles = `
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 999;
+  z-index: 9999;
   align-items: center;
   justify-content: center;
   transition: opacity 0.3s ease;
@@ -20,6 +20,7 @@ const styles = `
 }
 
 .sqs-custom-modal {
+  z-index: 9999;
   display: none;
   z-index: 1;
   width: 600px;
@@ -35,6 +36,7 @@ const styles = `
 .sqs-custom-modal-content {
   display: flex;
   width: 100%;
+  height: 100%;
 }
 
 .sqs-custom-modal-close {
@@ -94,20 +96,24 @@ class SqsCustomModal extends HTMLElement {
     const alignItems = this.getAttribute("alignItems");
     const justifyContent = this.getAttribute("justifyContent");
     const flexDirection = this.getAttribute("flexDirection");
+    const modal = this.shadowRoot.querySelector(this.MODAL_CLASS_SELECTOR);
     const modalContent = this.shadowRoot.querySelector(
       this.CONTENT_CLASS_SELECTOR
     );
 
     if (alignItems) {
       modalContent.style.alignItems = alignItems;
+      modal.style.alignItems = alignItems;
     }
 
     if (justifyContent) {
       modalContent.style.justifyContent = justifyContent;
+      modal.style.alignItems = alignItems;
     }
 
     if (flexDirection) {
       modalContent.style.flexDirection = flexDirection;
+      modal.style.flexDirection = flexDirection;
     }
   }
 
@@ -170,21 +176,21 @@ How to use it:
 <button onclick="document.getElementById('modal1').open()">
   Open Modal
 </button>
+*/
 
+/*
+How to use props:
 
-or
-
-<sqs-custom-modal id="modal1">
+<sqs-custom-modal 
+  id="modal1" 
+  justifyContent="center" 
+  alignItems="center" 
+  direction="column"
+>
   <p>Some text in the Modal..</p>
 </sqs-custom-modal>
 
-<button onclick="openModal1">
+<button onclick="document.getElementById('modal1').open()">
   Open Modal
 </button>
-
-<script>
-  function openModal1() {
-    document.getElementById("modal1").open();
-  }
-</script>
 */
