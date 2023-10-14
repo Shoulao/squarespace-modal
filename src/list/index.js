@@ -20,7 +20,9 @@ class SqsCustomList extends HTMLElement {
         }
 
         img {
-          max-width: 100%;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
 
         .sqs-custom-list-container {
@@ -33,6 +35,9 @@ class SqsCustomList extends HTMLElement {
           justify-content: ${justifyContent};
           gap: ${gap};
           flex-wrap: nowrap;
+          height: 100%;
+          width: 100%;
+          overflow-y: auto;
         }
 
         .sqs-custom-list-item {
