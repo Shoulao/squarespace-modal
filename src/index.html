@@ -5,15 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./index.css" />
     <script>
+      const MODAL_OVERLAY_CLASS = "custom-modal-overlay";
+
       window.addEventListener("DOMContentLoaded", () => {
-        window.openCustomModal = function (modalId) {
+        const overlay = document.querySelector(`.${MODAL_OVERLAY_CLASS}`);
+
+        const showOverlay = () => {
+          overlay.style.display = "flex";
+        };
+
+        const hideOverlay = () => {
+          overlay.style.display = "none";
+        };
+
+        const showModal = (modalId) => {
           const modal = document.getElementById(modalId);
-          modal.style.display = "block";
+          overlay.style.display = "flex";
+        };
+
+        const hideModal = (modalId) => {
+          const modal = document.getElementById(modalId);
+          overlay.style.display = "none";
+        };
+
+        window.openCustomModal = function (modalId) {
+          showOverlay();
+          showModal(modalId);
         };
 
         window.closeCustomModal = function (modalId) {
-          const modal = document.getElementById(modalId);
-          modal.style.display = "none";
+          hideOverlay();
+          hideModal(modalId);
         };
 
         function createCustomModal(modalId, contentElement) {
@@ -37,29 +59,21 @@
 
           document.body.appendChild(modal);
         }
-
-        // Create a div with some child elements
-        // const customContent = document.createElement("div");
-        // const child1 = document.createElement("p");
-        // child1.textContent = "Child 1 content";
-        // const child2 = document.createElement("p");
-        // child2.textContent = "Child 2 content";
-
-        // customContent.appendChild(child1);
-        // customContent.appendChild(child2);
-
-        // // Now create your modal
-        // createCustomModal("modal1", customContent);
       });
     </script>
   </head>
   <body>
-    <div id="modal1" class="modal">
-      <div class="modal-content">
-        <span class="close" onclick="closeCustomModal('modal1')">&times;</span>
-        <p>Some text in the Modal..</p>
+    <div class="custom-modal-overlay">
+      <div id="modal1" class="custom-modal">
+        <div class="custom-modal-content">
+          <span class="custom-modal-close" onclick="closeCustomModal('modal1')"
+            >&times;</span
+          >
+          <p>Some text in the Modal..</p>
+        </div>
       </div>
     </div>
+
     <button onclick="openCustomModal('modal1')">Open Modal 1</button>
   </body>
 </html>
