@@ -1,4 +1,4 @@
-class t extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"})}getPropsValuesAndRenderList(){let t=this.getAttribute("flexDirection")||"row",e=this.getAttribute("alignItems")||"stretch",s=this.getAttribute("justifyContent")||"flex-start",i=this.getAttribute("itemWidth")||"auto",o=this.getAttribute("itemHeight")||"auto",l=this.getAttribute("gap")||"0";this.shadowRoot.innerHTML=`
+class t extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"})}getPropsValuesAndRenderList(){let t=this.getAttribute("flexDirection")||"row",e=this.getAttribute("alignItems")||"stretch",s=this.getAttribute("justifyContent")||"flex-start",i=this.getAttribute("itemWidth")||"auto",o=this.getAttribute("itemHeight")||"auto",l=this.getAttribute("gap")||"0";console.log({gap:l,itemHeight:o,itemWidth:i,alignItems:e,justifyContent:s,flexDirection:t}),this.shadowRoot.innerHTML=`
       <style>
         * {
           box-sizing: border-box;
@@ -35,7 +35,7 @@ class t extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"
       <div class="sqs-custom-list-container">
         <slot></slot>
       </div>
-    `;let n=this.shadowRoot.querySelector("slot");n.addEventListener("slotchange",()=>{let t=n.assignedNodes();t.forEach(t=>{if(t.classList&&t.classList.contains("sqs-list-item")){t.style.width=i,t.style.height=o;let e=t.querySelector("img");e&&(e.style.objectFit="cover",e.style.width=i,e.style.height=o)}})})}connectedCallback(){this.getPropsValuesAndRenderList()}}customElements.define("sqs-custom-list",t);/*
+    `;let n=this.shadowRoot.querySelector("slot");n.addEventListener("slotchange",()=>{let t=n.assignedNodes();t.forEach(t=>{if(t.classList&&t.classList.contains("sqs-custom-list-item")){t.style.width=i,t.style.height=o;let e=t.querySelector("img");e&&(e.style.objectFit="cover",e.style.width=i,e.style.height=o)}})})}connectedCallback(){this.getPropsValuesAndRenderList()}}customElements.define("sqs-custom-list",t);/*
 How to use it:
 
 <sqs-custom-list 

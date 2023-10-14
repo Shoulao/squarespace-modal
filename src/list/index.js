@@ -13,6 +13,14 @@ class SqsCustomList extends HTMLElement {
     const itemHeight = this.getAttribute("itemHeight") || "auto";
     const gap = this.getAttribute("gap") || "0";
 
+    console.log({
+      gap,
+      itemHeight,
+      itemWidth,
+      alignItems,
+      justifyContent,
+      flexDirection,
+    });
     this.shadowRoot.innerHTML = `
       <style>
         * {
@@ -57,7 +65,7 @@ class SqsCustomList extends HTMLElement {
     slot.addEventListener("slotchange", () => {
       const assignedNodes = slot.assignedNodes();
       assignedNodes.forEach((node) => {
-        if (node.classList && node.classList.contains("sqs-list-item")) {
+        if (node.classList && node.classList.contains("sqs-custom-list-item")) {
           node.style.width = itemWidth;
           node.style.height = itemHeight;
 
