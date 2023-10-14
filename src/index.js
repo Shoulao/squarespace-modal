@@ -1,46 +1,51 @@
+const MODAL_OVERLAY_CLASS = "custom-modal-overlay";
+
 window.addEventListener("DOMContentLoaded", () => {
-  window.openModal = function (modalId) {
-    const modal = document.getElementById(modalId);
-    modal.style.display = "block";
+  const overlay = document.querySelector(`.${MODAL_OVERLAY_CLASS}`);
+
+  const showOverlay = () => {
+    overlay.style.display = "flex";
   };
 
-  window.closeModal = function (modalId) {
+  const hideOverlay = () => {
+    overlay.style.display = "none";
+  };
+
+  const showModal = (modalId) => {
+    const modal = document.getElementById(modalId);
+    modal.style.display = "flex";
+  };
+
+  const hideModal = (modalId) => {
     const modal = document.getElementById(modalId);
     modal.style.display = "none";
   };
 
-  function createModal(modalId, contentElement) {
-    const modal = document.createElement("div");
-    modal.id = modalId;
-    modal.className = "modal";
+  window.openCustomModal = function (modalId) {
+    showOverlay();
+    showModal(modalId);
+  };
 
-    const modalContent = document.createElement("div");
-    modalContent.className = "modal-content";
-
-    const closeBtn = document.createElement("span");
-    closeBtn.className = "close";
-    closeBtn.innerHTML = "&times;";
-    closeBtn.onclick = function () {
-      window.closeModal(modalId);
-    };
-
-    modalContent.appendChild(closeBtn);
-    modalContent.appendChild(contentElement);
-    modal.appendChild(modalContent);
-
-    document.body.appendChild(modal);
-  }
-
-  // Create a div with some child elements
-  const customContent = document.createElement("div");
-  const child1 = document.createElement("p");
-  child1.textContent = "Child 1 content";
-  const child2 = document.createElement("p");
-  child2.textContent = "Child 2 content";
-
-  customContent.appendChild(child1);
-  customContent.appendChild(child2);
-
-  // Now create your modal
-  createModal("modal1", customContent);
+  window.closeCustomModal = function (modalId) {
+    hideOverlay();
+    hideModal(modalId);
+  };
 });
+
+/*
+USAGE:
+
+HTML
+<div class="custom-modal-overlay">
+    <div id="modal1" class="custom-modal">
+    <div class="custom-modal-content">
+        <span class="custom-modal-close" onclick="closeCustomModal('modal1')"
+        >&times;</span
+        >
+        <p>Some text in the Modal..</p>
+    </div>
+    </div>
+</div>
+
+<button onclick="openCustomModal('modal1')">Open Modal 1</button>
+*/

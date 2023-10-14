@@ -4,63 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./index.css" />
-    <script>
-      const MODAL_OVERLAY_CLASS = "custom-modal-overlay";
-
-      window.addEventListener("DOMContentLoaded", () => {
-        const overlay = document.querySelector(`.${MODAL_OVERLAY_CLASS}`);
-
-        const showOverlay = () => {
-          overlay.style.display = "flex";
-        };
-
-        const hideOverlay = () => {
-          overlay.style.display = "none";
-        };
-
-        const showModal = (modalId) => {
-          const modal = document.getElementById(modalId);
-          overlay.style.display = "flex";
-        };
-
-        const hideModal = (modalId) => {
-          const modal = document.getElementById(modalId);
-          overlay.style.display = "none";
-        };
-
-        window.openCustomModal = function (modalId) {
-          showOverlay();
-          showModal(modalId);
-        };
-
-        window.closeCustomModal = function (modalId) {
-          hideOverlay();
-          hideModal(modalId);
-        };
-
-        function createCustomModal(modalId, contentElement) {
-          const modal = document.createElement("div");
-          modal.id = modalId;
-          modal.className = "modal";
-
-          const modalContent = document.createElement("div");
-          modalContent.className = "modal-content";
-
-          const closeBtn = document.createElement("span");
-          closeBtn.className = "close";
-          closeBtn.innerHTML = "&times;";
-          closeBtn.onclick = function () {
-            window.closeCustomModal(modalId);
-          };
-
-          modalContent.appendChild(closeBtn);
-          modalContent.appendChild(contentElement);
-          modal.appendChild(modalContent);
-
-          document.body.appendChild(modal);
-        }
-      });
-    </script>
+    <script src="./index.js"></script>
   </head>
   <body>
     <div class="custom-modal-overlay">
