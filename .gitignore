@@ -1,8 +1,6 @@
 # Ignore the node_modules directory
 node_modules/
 
-# Ignore the Parcel generated dist directory
-dist/
 
 # Ignore the .cache directory created by Parcel
 .cache/
