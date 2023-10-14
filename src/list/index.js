@@ -23,7 +23,7 @@ class SqsCustomList extends HTMLElement {
           max-width: 100%;
         }
 
-        .sqs-list-container {
+        .sqs-custom-list-container {
           display: flex;
           margin: 0;
           padding: 0;
@@ -32,16 +32,17 @@ class SqsCustomList extends HTMLElement {
           align-items: ${alignItems};
           justify-content: ${justifyContent};
           gap: ${gap};
+          flex-wrap: nowrap;
         }
 
-        .sqs-list-item {
+        .sqs-custom-list-item {
           display: flex;
           padding: 0;
           margin: 0;
         }
       </style>
 
-      <div class="sqs-list-container">
+      <div class="sqs-custom-list-container">
         <slot></slot>
       </div>
     `;
@@ -59,8 +60,8 @@ class SqsCustomList extends HTMLElement {
 
           if (imgElement) {
             imgElement.style.objectFit = "cover";
-            imgElement.style.width = "100%";
-            imgElement.style.height = "100%";
+            imgElement.style.width = itemWidth;
+            imgElement.style.height = itemHeight;
           }
         }
       });
@@ -84,8 +85,8 @@ How to use it:
   itemWidth="100px" 
   itemHeight="50px" 
   gap="10px">
-    <div class="sqs-list-item">Item 1</div>
-    <div class="sqs-list-item">Item 2</div>
-    <div class="sqs-list-item">Item 3</div>
+    <div class="sqs-custom-list-item">Item 1</div>
+    <div class="sqs-custom-list-item">Item 2</div>
+    <div class="sqs-custom-list-item">Item 3</div>
 </sqs-custom-list>
 */

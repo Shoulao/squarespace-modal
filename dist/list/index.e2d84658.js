@@ -8,7 +8,7 @@ class t extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"
           max-width: 100%;
         }
 
-        .sqs-list-container {
+        .sqs-custom-list-container {
           display: flex;
           margin: 0;
           padding: 0;
@@ -17,19 +17,20 @@ class t extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"
           align-items: ${e};
           justify-content: ${s};
           gap: ${o};
+          flex-wrap: nowrap;
         }
 
-        .sqs-list-item {
+        .sqs-custom-list-item {
           display: flex;
           padding: 0;
           margin: 0;
         }
       </style>
 
-      <div class="sqs-list-container">
+      <div class="sqs-custom-list-container">
         <slot></slot>
       </div>
-    `;let n=this.shadowRoot.querySelector("slot");n.addEventListener("slotchange",()=>{let t=n.assignedNodes();t.forEach(t=>{if(t.classList&&t.classList.contains("sqs-list-item")){t.style.width=i,t.style.height=l;let e=t.querySelector("img");e&&(e.style.objectFit="cover",e.style.width="100%",e.style.height="100%")}})})}connectedCallback(){this.getPropsValuesAndRenderList()}}customElements.define("sqs-custom-list",t);/*
+    `;let n=this.shadowRoot.querySelector("slot");n.addEventListener("slotchange",()=>{let t=n.assignedNodes();t.forEach(t=>{if(t.classList&&t.classList.contains("sqs-list-item")){t.style.width=i,t.style.height=l;let e=t.querySelector("img");e&&(e.style.objectFit="cover",e.style.width=i,e.style.height=l)}})})}connectedCallback(){this.getPropsValuesAndRenderList()}}customElements.define("sqs-custom-list",t);/*
 How to use it:
 
 <sqs-custom-list 
@@ -39,9 +40,9 @@ How to use it:
   itemWidth="100px" 
   itemHeight="50px" 
   gap="10px">
-    <div class="sqs-list-item">Item 1</div>
-    <div class="sqs-list-item">Item 2</div>
-    <div class="sqs-list-item">Item 3</div>
+    <div class="sqs-custom-list-item">Item 1</div>
+    <div class="sqs-custom-list-item">Item 2</div>
+    <div class="sqs-custom-list-item">Item 3</div>
 </sqs-custom-list>
 *///# sourceMappingURL=index.e2d84658.js.map
 
