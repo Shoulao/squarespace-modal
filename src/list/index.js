@@ -1,8 +1,3 @@
-const component = `
-<div class="sqs-list-container">
-  <slot></slot>
-</div>`;
-
 class SqsCustomList extends HTMLElement {
   constructor() {
     super();
@@ -19,11 +14,15 @@ class SqsCustomList extends HTMLElement {
     const gap = this.getAttribute("gap") || "0";
 
     this.shadowRoot.innerHTML = `
-      * {
-        box-sizing: border-box;
-      }
-
       <style>
+        * {
+          box-sizing: border-box;
+        }
+
+        img {
+          max-width: 100%;
+        }
+
         .sqs-list-container {
           display: flex;
           margin: 0;
@@ -39,13 +38,33 @@ class SqsCustomList extends HTMLElement {
           display: flex;
           padding: 0;
           margin: 0;
-          width: ${itemWidth};
-          height: ${itemHeight};
         }
       </style>
 
-      ${component}
+      <div class="sqs-list-container">
+        <slot></slot>
+      </div>
     `;
+
+    const slot = this.shadowRoot.querySelector("slot");
+
+    slot.addEventListener("slotchange", () => {
+      const assignedNodes = slot.assignedNodes();
+      assignedNodes.forEach((node) => {
+        if (node.classList && node.classList.contains("sqs-list-item")) {
+          node.style.width = itemWidth;
+          node.style.height = itemHeight;
+
+          const imgElement = node.querySelector("img");
+
+          if (imgElement) {
+            imgElement.style.objectFit = "cover";
+            imgElement.style.width = "100%";
+            imgElement.style.height = "100%";
+          }
+        }
+      });
+    });
   }
 
   connectedCallback() {
