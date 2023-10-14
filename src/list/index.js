@@ -1,88 +1,55 @@
-const styles = `
-<style>
-* {
-  box-sizing: border-box;
-}
-
-.sqs-custom-list {
-  display: flex;
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
-
-.sqs-custom-list li {
-  display: flex;
-  padding: 0;
-  margin: 0;
-}
-</style>`;
-
 const component = `
-<div class="sqs-custom-list">
+<div class="sqs-list-container">
   <slot></slot>
 </div>`;
 
-class SqsCustomModal extends HTMLElement {
-  LIST_CLASS_SELECTOR = ".sqs-custom-list";
-  LIST_ITEM_SELECTOR = ".sqs-custom-list li";
-
+class SqsCustomList extends HTMLElement {
   constructor() {
     super();
 
     this.attachShadow({ mode: "open" });
+  }
+
+  getPropsValuesAndRenderList() {
+    const flexDirection = this.getAttribute("flexDirection") || "row";
+    const alignItems = this.getAttribute("alignItems") || "stretch";
+    const justifyContent = this.getAttribute("justifyContent") || "flex-start";
+    const itemWidth = this.getAttribute("itemWidth") || "auto";
+    const itemHeight = this.getAttribute("itemHeight") || "auto";
+    const gap = this.getAttribute("gap") || "0";
 
     this.shadowRoot.innerHTML = `
-    ${styles}
-    ${component}
+      * {
+        box-sizing: border-box;
+      }
+
+      <style>
+        .sqs-list-container {
+          display: flex;
+          margin: 0;
+          padding: 0;
+          list-style-type: none;
+          flex-direction: ${flexDirection};
+          align-items: ${alignItems};
+          justify-content: ${justifyContent};
+          gap: ${gap};
+        }
+
+        .sqs-list-item {
+          display: flex;
+          padding: 0;
+          margin: 0;
+          width: ${itemWidth};
+          height: ${itemHeight};
+        }
+      </style>
+
+      ${component}
     `;
   }
 
-  getPropsValues() {
-    const alignItems = this.getAttribute("alignItems");
-    const justifyContent = this.getAttribute("justifyContent");
-    const flexDirection = this.getAttribute("flexDirection");
-    const itemWidth = this.getAttribute("itemWidth");
-    const itemHeight = this.getAttribute("itemHeight");
-    const gap = this.getAttribute("gap");
-    const listContent = this.shadowRoot.querySelector(this.LIST_CLASS_SELECTOR);
-    const listItems = this.shadowRoot.querySelectorAll(this.LIST_ITEM_SELECTOR);
-
-    if (alignItems) {
-      listContent.style.alignItems = alignItems;
-      modal.style.alignItems = alignItems;
-    }
-
-    if (justifyContent) {
-      listContent.style.justifyContent = justifyContent;
-      modal.style.alignItems = alignItems;
-    }
-
-    if (flexDirection) {
-      listContent.style.flexDirection = flexDirection;
-      modal.style.flexDirection = flexDirection;
-    }
-
-    if (gap) {
-      listContent.style.gap = gap;
-      modal.style.flexDirection = flexDirection;
-    }
-
-    if (itemWidth) {
-      listItems.forEach((item) => {
-        item.style.itemWidth = itemWidth;
-      });
-    }
-
-    if (itemHeight) {
-      listItems.forEach((item) => {
-        item.style.itemHeight = itemHeight;
-      });
-    }
-  }
-
   connectedCallback() {
-    this.getPropsValues();
+    this.getPropsValuesAndRenderList();
   }
 }
 
@@ -92,15 +59,14 @@ customElements.define("sqs-custom-list", SqsCustomList);
 How to use it:
 
 <sqs-custom-list 
-  alignItems="center" 
-  justifyContent="center" 
   flexDirection="column" 
-  itemWidth="50" 
-  itemHeight="50" 
-  gap="10"
->
-  <p>Some text in the Modal..</p>
-  <p>Some text in the Modal..</p>
-  <p>Some text in the Modal..</p>
+  alignItems="center" 
+  justifyContent="space-around" 
+  itemWidth="100px" 
+  itemHeight="50px" 
+  gap="10px">
+    <div class="sqs-list-item">Item 1</div>
+    <div class="sqs-list-item">Item 2</div>
+    <div class="sqs-list-item">Item 3</div>
 </sqs-custom-list>
 */
