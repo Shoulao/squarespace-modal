@@ -1,1 +1,11 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="/index.5668860e.css"><script src="/index.9730434a.js"></script></head><body> <button onclick="openModal('modal1')">Open Modal 1</button> <button onclick="openModal('modal2')">Open Modal 2</button> </body></html>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="/index.7d05bf5b.css"><script>window.addEventListener("DOMContentLoaded",()=>{window.openCustomModal=function(e){let n=document.getElementById(e);n.style.display="block"},window.closeCustomModal=function(e){let n=document.getElementById(e);n.style.display="none"};// Create a div with some child elements
+// const customContent = document.createElement("div");
+// const child1 = document.createElement("p");
+// child1.textContent = "Child 1 content";
+// const child2 = document.createElement("p");
+// child2.textContent = "Child 2 content";
+// customContent.appendChild(child1);
+// customContent.appendChild(child2);
+// // Now create your modal
+// createCustomModal("modal1", customContent);
+});</script></head><body> <div id="modal1" class="modal"> <div class="modal-content"> <span class="close" onclick="closeCustomModal('modal1')">&times;</span> <p>Some text in the Modal..</p> </div> <button onclick="openCustomModal('modal1')">Open Modal 1</button> </div></body></html>
